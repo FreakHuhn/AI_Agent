@@ -11,3 +11,4 @@ wheels/
 .env
 uv.lock
 test_main.py
+test_models.py
