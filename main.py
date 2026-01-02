@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 import argparse
 from google.genai import types
+import prompts
 
 
 def main():
@@ -19,8 +20,9 @@ def main():
 
     client = genai.Client(api_key=api_key)
     response = client.models.generate_content(
-        model="models/gemini-2.5-flash", 
-        contents= messages
+        model="models/gemini-2.5-flash",
+        contents=messages,
+        config=types.GenerateContentConfig(system_instruction=prompts.system_prompt),
     )
     
     if response.usage_metadata is None:
